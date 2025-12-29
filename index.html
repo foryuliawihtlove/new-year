@@ -2,42 +2,1290 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Новогодний подарок</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>12 Месяцев Волшебства 2026</title>
+    
+    <!-- Для iPhone 15 Pro -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#8B0000">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎁</text></svg>">
+    
+    <!-- Google Fonts - Montserrat + Playfair Display -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
+        /* ===== RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        :root {
+            --red: #8B0000;
+            --gold: #FFD700;
+            --green: #2E7D32;
+            --white: #ffffff;
+            --bg: #fffafa;
+            --shadow: rgba(139, 0, 0, 0.2);
+            --dark-red: #5a0000;
+            --light-gold: #fff8dc;
+        }
+        
+        html {
+            height: 100%;
+            padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+            scroll-behavior: smooth;
+        }
+        
         body {
-            background: white;
-            font-family: Arial, sans-serif;
+            font-family: 'Montserrat', sans-serif;
+            background: var(--bg);
+            color: #2c3e50;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            background-image: 
+                repeating-linear-gradient(90deg, 
+                    transparent, 
+                    transparent 20px, 
+                    rgba(139, 0, 0, 0.03) 20px, 
+                    rgba(139, 0, 0, 0.03) 40px),
+                repeating-linear-gradient(0deg, 
+                    transparent, 
+                    transparent 20px, 
+                    rgba(46, 125, 50, 0.03) 20px, 
+                    rgba(46, 125, 50, 0.03) 40px);
+        }
+        
+        /* ===== ТИПОГРАФИЯ ===== */
+        h1, h2, h3, .title {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        
+        .montserrat {
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        /* ===== ПАРОЛЬНЫЙ ЭКРАН ===== */
+        .password-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1a0b0b 0%, #2c1818 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+            padding: 20px;
+        }
+        
+        .password-screen.fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .password-container {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(255, 248, 220, 0.98));
+            padding: 3rem;
+            border-radius: 25px;
             text-align: center;
-            padding: 50px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.25),
+                0 0 0 1px rgba(255, 215, 0, 0.3);
+            border: 2px solid var(--gold);
+            animation: float 6s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
         }
-        .container {
+        
+        .password-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--red), var(--gold), var(--green));
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0.5deg); }
+            50% { transform: translateY(-15px) rotate(-0.5deg); }
+        }
+        
+        .password-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.2rem;
+            color: var(--red);
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 0 var(--gold);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .password-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 25%;
+            width: 50%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+        
+        .password-subtitle {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 2rem;
+            line-height: 1.7;
+            font-weight: 400;
+        }
+        
+        .password-input {
+            padding: 1rem 1.5rem;
+            font-size: 1.2rem;
+            border: 2px solid var(--red);
+            border-radius: 12px;
+            width: 100%;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            font-family: 'Montserrat', sans-serif;
+            transition: all 0.3s ease;
+            background: var(--white);
+            letter-spacing: 1px;
+        }
+        
+        .password-input:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.3);
+            transform: scale(1.02);
+        }
+        
+        .password-btn {
+            background: linear-gradient(135deg, var(--red), #B22222);
+            color: white;
+            border: none;
+            padding: 1rem 3rem;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .password-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px var(--shadow);
+        }
+        
+        .password-btn:active {
+            transform: translateY(0);
+        }
+        
+        .password-hint {
+            margin-top: 1.5rem;
+            color: #888;
+            font-size: 0.9rem;
+            font-style: italic;
+            font-weight: 300;
+        }
+        
+        /* ===== ОСНОВНОЙ КОНТЕНТ ===== */
+        .main-content {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+        }
+        
+        .main-content.show {
+            display: block;
+            opacity: 1;
+        }
+        
+        /* ===== ШАПКА ===== */
+        .header {
+            text-align: center;
+            padding: 3rem 1rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(139, 0, 0, 0.1) 0%, transparent 50%);
+            z-index: -1;
+        }
+        
+        .title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            background: linear-gradient(45deg, var(--red), var(--gold));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .title::before, .title::after {
+            content: '🎄';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            opacity: 0.7;
+        }
+        
+        .title::before {
+            left: -50px;
+        }
+        
+        .title::after {
+            right: -50px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #555;
             max-width: 600px;
-            margin: 0 auto;
-            border: 5px solid red;
+            margin: 0 auto 2rem;
+            line-height: 1.7;
+            font-weight: 400;
+        }
+        
+        /* ===== ТАЙМЕР ===== */
+        .timer-container {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 248, 220, 0.9));
+            padding: 1.5rem 2rem;
             border-radius: 20px;
-            padding: 40px;
-            background: #fff0f0;
+            display: inline-block;
+            margin: 1rem auto;
+            border: 2px solid var(--gold);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
         }
-        h1 {
-            color: red;
-            font-size: 3rem;
+        
+        .timer-label {
+            font-size: 1rem;
+            color: var(--red);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
-        .emoji {
-            font-size: 5rem;
+        
+        .timer-display {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            color: var(--dark-red);
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        
+        /* ===== СЕТКА СУНДУКОВ ===== */
+        .chests-container {
+            padding: 2rem 1rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .chests-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .chests-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 1.5rem;
+                padding: 1rem;
+            }
+        }
+        
+        /* ===== СТИЛИ СУНДУКОВ (ПОДАРКОВ) ===== */
+        .chest {
+            position: relative;
+            cursor: pointer;
+            perspective: 1000px;
+            height: 280px;
+        }
+        
+        .chest-inner {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .chest.open .chest-inner {
+            transform: rotateY(180deg);
+        }
+        
+        /* Лицевая сторона - закрытый подарок */
+        .chest-front {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1.5rem;
+            box-shadow: 
+                0 15px 35px rgba(0, 0, 0, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            transition: all 0.3s ease;
+            border: 3px solid transparent;
+            overflow: hidden;
+        }
+        
+        /* Уникальные узоры для каждого месяца */
+        .chest[data-month="1"] .chest-front {
+            background: linear-gradient(135deg, #8B0000, #B22222);
+            border-color: #FFD700;
+        }
+        
+        .chest[data-month="2"] .chest-front {
+            background: linear-gradient(135deg, #FF6B6B, #FF8E8E);
+            border-color: #FFD700;
+        }
+        
+        .chest[data-month="3"] .chest-front {
+            background: linear-gradient(135deg, #4ECDC4, #66D9D1);
+            border-color: #2E7D32;
+        }
+        
+        .chest[data-month="4"] .chest-front {
+            background: linear-gradient(135deg, #9B59B6, #AF7AC5);
+            border-color: #8B0000;
+        }
+        
+        .chest[data-month="5"] .chest-front {
+            background: linear-gradient(135deg, #2ECC71, #58D68D);
+            border-color: #FFD700;
+        }
+        
+        .chest[data-month="6"] .chest-front {
+            background: linear-gradient(135deg, #3498DB, #5DADE2);
+            border-color: #2E7D32;
+        }
+        
+        .chest[data-month="7"] .chest-front {
+            background: linear-gradient(135deg, #E67E22, #EB984E);
+            border-color: #8B0000;
+        }
+        
+        .chest[data-month="8"] .chest-front {
+            background: linear-gradient(135deg, #8E44AD, #A569BD);
+            border-color: #FFD700;
+        }
+        
+        .chest[data-month="9"] .chest-front {
+            background: linear-gradient(135deg, #1ABC9C, #48C9B0);
+            border-color: #2E7D32;
+        }
+        
+        .chest[data-month="10"] .chest-front {
+            background: linear-gradient(135deg, #E74C3C, #EC7063);
+            border-color: #FFD700;
+        }
+        
+        .chest[data-month="11"] .chest-front {
+            background: linear-gradient(135deg, #34495E, #5D6D7E);
+            border-color: #8B0000;
+        }
+        
+        .chest[data-month="12"] .chest-front {
+            background: linear-gradient(135deg, #F1C40F, #F4D03F);
+            border-color: #8B0000;
+        }
+        
+        /* Номер месяца */
+        .chest-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 700;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            margin-bottom: 0.5rem;
+            line-height: 1;
+        }
+        
+        /* Название месяца */
+        .chest-month {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            margin-bottom: 1rem;
+        }
+        
+        /* Статус подарка */
+        .chest-status {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.9);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 0.5rem 1rem;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        /* Бант на подарке */
+        .chest-bow {
+            position: absolute;
+            top: -10px;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(45deg, var(--gold), #FFA500);
+            border-radius: 50%;
+            z-index: 2;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .chest-bow::before,
+        .chest-bow::after {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 60px;
+            background: inherit;
+            border-radius: 15px;
+        }
+        
+        .chest-bow::before {
+            top: 20px;
+            left: 5px;
+            transform: rotate(45deg);
+        }
+        
+        .chest-bow::after {
+            top: 20px;
+            right: 5px;
+            transform: rotate(-45deg);
+        }
+        
+        /* Обратная сторона - открытый подарок */
+        .chest-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            transform: rotateY(180deg);
+            border-radius: 15px;
+            padding: 2rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--white), var(--light-gold));
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            border: 3px solid var(--gold);
+            text-align: center;
+        }
+        
+        .chest-back-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--red);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        .chest-back-month {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            color: var(--green);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        
+        .chest-back-content {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            color: #555;
+            line-height: 1.5;
+            font-weight: 400;
+        }
+        
+        .chest-back-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
+        
+        /* Анимация покачивания для доступных сундуков */
+        @keyframes chestSway {
+            0%, 100% { transform: translateY(0) rotate(0); }
+            25% { transform: translateY(-5px) rotate(1deg); }
+            50% { transform: translateY(-8px) rotate(-1deg); }
+            75% { transform: translateY(-5px) rotate(1deg); }
+        }
+        
+        .chest:not(.locked):hover .chest-front {
+            animation: chestSway 1.5s ease-in-out infinite;
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.25),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9);
+            transform: translateY(-5px);
+        }
+        
+        /* Заблокированные сундуки */
+        .chest.locked {
+            opacity: 0.5;
+            cursor: not-allowed;
+            filter: grayscale(0.7);
+        }
+        
+        .chest.locked .chest-front {
+            background: linear-gradient(135deg, #888, #aaa) !important;
+            border-color: #666 !important;
+        }
+        
+        .chest.locked .chest-bow {
+            background: linear-gradient(45deg, #888, #666) !important;
+        }
+        
+        /* Анимация открытия */
+        @keyframes chestOpen {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        .chest.opening .chest-inner {
+            animation: chestOpen 0.6s ease;
+        }
+        
+        /* ===== МОДАЛЬНОЕ ОКНО ===== */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(10px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9998;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .modal-overlay.show {
+            display: flex;
+            opacity: 1;
+        }
+        
+        .modal {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(255, 248, 220, 0.98));
+            border-radius: 25px;
+            padding: 3rem;
+            max-width: 600px;
+            width: 90%;
+            box-shadow: 
+                0 30px 60px rgba(0, 0, 0, 0.4),
+                0 0 0 1px rgba(255, 215, 0, 0.3);
+            border: 3px solid var(--gold);
+            position: relative;
+            animation: modalAppear 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        
+        @keyframes modalAppear {
+            from {
+                opacity: 0;
+                transform: translateY(50px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        
+        .modal-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid rgba(139, 0, 0, 0.2);
+            position: relative;
+        }
+        
+        .modal-header::after {
+            content: '✨';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.5rem;
+            background: var(--white);
+            padding: 0 10px;
+        }
+        
+        .modal-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--red);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+        
+        .modal-month {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1rem;
+            color: var(--green);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .modal-content {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #444;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(139, 0, 0, 0.1);
+            border: 2px solid rgba(139, 0, 0, 0.3);
+            color: var(--red);
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+        }
+        
+        .modal-close:hover {
+            background: rgba(139, 0, 0, 0.2);
+            transform: rotate(90deg);
+        }
+        
+        /* ===== КОНФЕТТИ ===== */
+        .confetti {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            font-size: 20px;
+        }
+        
+        /* ===== ИНСТРУКЦИЯ ===== */
+        .instructions {
+            text-align: center;
+            margin: 3rem auto;
+            padding: 2.5rem;
+            max-width: 800px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 248, 220, 0.9));
+            border-radius: 20px;
+            border: 2px solid var(--gold);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        .instructions-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--red);
+            margin-bottom: 1.5rem;
+        }
+        
+        .instructions-content {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+        
+        .instructions-note {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            color: #777;
+            font-style: italic;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(139, 0, 0, 0.2);
+        }
+        
+        /* ===== СНЕГ ===== */
+        .snow-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .snowflake {
+            position: absolute;
+            color: rgba(173, 216, 230, 0.8);
+            font-size: 24px;
+            animation: snowfall linear infinite;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+            user-select: none;
+        }
+        
+        @keyframes snowfall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+        
+        /* ===== FOOTER ===== */
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            color: #666;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(139, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.5);
+        }
+        
+        /* ===== АДАПТИВНОСТЬ ===== */
+        @media (max-width: 768px) {
+            .password-title {
+                font-size: 2.5rem;
+            }
+            
+            .title {
+                font-size: 2.8rem;
+            }
+            
+            .title::before,
+            .title::after {
+                display: none;
+            }
+            
+            .chest {
+                height: 240px;
+            }
+            
+            .chest-number {
+                font-size: 3.5rem;
+            }
+            
+            .chest-month {
+                font-size: 1.1rem;
+            }
+            
+            .modal {
+                padding: 2rem 1.5rem;
+            }
+            
+            .modal-title {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="emoji">🎄🎁✨</div>
-        <h1>Новогодний подарок</h1>
-        <p style="font-size: 1.5rem; color: #333;">
-            Если вы это видите, GitHub Pages работает!
-        </p>
-        <p style="margin-top: 30px; color: green; font-weight: bold;">
-            Ура! Сайт загружен успешно!
-        </p>
+    <!-- Парольный экран -->
+    <div class="password-screen" id="passwordScreen">
+        <div class="password-container">
+            <h1 class="password-title">12 Месяцев Волшебства</h1>
+            <p class="password-subtitle">
+                Добро пожаловать в новогодний подарок 2026!<br>
+                Чтобы открыть волшебство, введите секретное слово:
+            </p>
+            <input type="password" class="password-input" id="passwordInput" placeholder="Введите волшебное слово">
+            <button class="password-btn" id="passwordBtn">Открыть подарок</button>
+            <p class="password-hint">Подсказка: связано с самым любимым праздником</p>
+        </div>
     </div>
+    
+    <!-- Основной контент -->
+    <div class="main-content" id="mainContent">
+        <!-- Шапка -->
+        <header class="header">
+            <h1 class="title">12 Месяцев Волшебства</h1>
+            <p class="subtitle">Каждый месяц — новое приключение. Открывай по одному подарку в конце каждого месяца, начиная с 31 декабря 2025</p>
+            <div class="timer-container">
+                <div class="timer-label">Следующий подарок откроется через:</div>
+                <div class="timer-display" id="timerDisplay"></div>
+            </div>
+        </header>
+        
+        <!-- Снег -->
+        <div class="snow-container" id="snowContainer"></div>
+        
+        <!-- Сетка подарков -->
+        <div class="chests-container">
+            <div class="chests-grid" id="chestsGrid">
+                <!-- Подарки будут сгенерированы через JS -->
+            </div>
+        </div>
+        
+        <!-- Инструкция -->
+        <div class="instructions">
+            <h2 class="instructions-title">✨ Как это работает?</h2>
+            <div class="instructions-content">
+                <p>Первый подарок откроется 31 декабря 2025. Затем в конце каждого месяца будет открываться новый подарок с обещанием на следующий месяц.</p>
+                <p>Нажми на доступный подарок, чтобы увидеть обещание на месяц.</p>
+                <p>Каждый подарок уникален и соответствует своему месяцу по цвету и настроению.</p>
+            </div>
+            <p class="instructions-note">Прогресс сохраняется автоматически. Вы всегда можете вернуться и посмотреть открытые подарки.</p>
+        </div>
+        
+        <!-- Футер -->
+        <footer class="footer">
+            <p>Создано с ❤️ и новогодним настроением • 2026</p>
+        </footer>
+    </div>
+    
+    <!-- Модальное окно -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <div class="modal-header">
+                <h2 class="modal-title" id="modalTitle"></h2>
+                <div class="modal-month" id="modalMonth"></div>
+            </div>
+            <div class="modal-content" id="modalContent"></div>
+        </div>
+    </div>
+
+    <script>
+        // ===== КОНФИГУРАЦИЯ =====
+        const CONFIG = {
+            password: "170825", // Пароль для доступа
+            startDate: new Date('2025-12-31'), // Дата открытия первого подарка
+            storageKey: 'gift_2026_opened',
+            wishes: [
+                {
+                    month: 1,
+                    title: "Январь — Начало волшебства",
+                    content: "В первый месяц года мы отправимся на зимнюю прогулку в самое красивое место города. Горячий какао, тёплые пледы и разговоры до утра. Я подготовлю сюрприз, который согреет даже в самый холодный день.",
+                    icon: "❄️",
+                    color: "#8B0000"
+                },
+                {
+                    month: 2,
+                    title: "Февраль — Тепло сердец",
+                    content: "Вечер домашней кухни. Я приготовлю ужин по твоему любимому рецепту, а после мы посмотрим фильм, который ты давно хотела. Будет уютно, вкусно и по-домашнему тепло.",
+                    icon: "❤️",
+                    color: "#FF6B6B"
+                },
+                {
+                    month: 3,
+                    title: "Март — Пробуждение",
+                    content: "Мастер-класс по чему-то новому на твой выбор: гончарное дело, каллиграфия, танцы или кулинария. Вместе освоим что-то интересное и создадим что-то красивое своими руками.",
+                    icon: "🌱",
+                    color: "#4ECDC4"
+                },
+                {
+                    month: 4,
+                    title: "Апрель — Весеннее обновление",
+                    content: "Поездка за город на целый день. Пикник на природе, прогулка по лесу и фотосессия с первыми весенними цветами. Возьмём с собой всё самое вкусное и хорошее настроение.",
+                    icon: "🌸",
+                    color: "#9B59B6"
+                },
+                {
+                    month: 5,
+                    title: "Май — Цветущие обещания",
+                    content: "День в ботаническом саду или оранжерее. Будем любоваться цветущими растениями и выберем тебе новый комнатный цветок, который будет напоминать об этом дне весь год.",
+                    icon: "🌺",
+                    color: "#2ECC71"
+                },
+                {
+                    month: 6,
+                    title: "Июнь — Летний бриз",
+                    content: "Поездка на озеро или реку. Закат, уха, свежий воздух и возможность просто быть на природе в хорошей компании. Возьмём надувной матрас и будем смотреть на звёзды.",
+                    icon: "🌊",
+                    color: "#3498DB"
+                },
+                {
+                    month: 7,
+                    title: "Июль — Звёздная ночь",
+                    content: "Ночной пикник под открытым небом. Будем загадывать желания на падающие звёзды и слушать летние звуки природы. Я подготовлю телескоп, чтобы получше рассмотреть созвездия.",
+                    icon: "⭐",
+                    color: "#E67E22"
+                },
+                {
+                    month: 8,
+                    title: "Август — Морская гладь",
+                    content: "День на пляже или у воды. Солнце, прохладная вода и возможность отдохнуть от городской суеты. Возьмём с собой хорошую книгу и фрукты на весь день.",
+                    icon: "🏖️",
+                    color: "#8E44AD"
+                },
+                {
+                    month: 9,
+                    title: "Сентябрь — Золотая осень",
+                    content: "Фотосессия в осеннем парке. Будем ловить самые красивые моменты золотой осени и соберём букет из разноцветных листьев. А после — тёплое кафе с тыквенным латте.",
+                    icon: "🍂",
+                    color: "#1ABC9C"
+                },
+                {
+                    month: 10,
+                    title: "Октябрь — Тёплый уют",
+                    content: "Вечер настольных игр с горячим чаем и домашней выпечкой. Устроим мини-турнир и просто хорошо проведём время в уютной атмосфере. Можно пригласить друзей!",
+                    icon: "☕",
+                    color: "#E74C3C"
+                },
+                {
+                    month: 11,
+                    title: "Ноябрь — Искусство и вдохновение",
+                    content: "Посещение выставки, музея или галереи на твой выбор. Обсудим искусство за чашкой кофе в уютном кафе. А может, сами попробуем что-то нарисовать?",
+                    icon: "🎨",
+                    color: "#34495E"
+                },
+                {
+                    month: 12,
+                    title: "Декабрь — Завершение круга",
+                    content: "Подведение итогов года за ужином в красивом месте. Вспомним все приключения года и помечтаем о следующем годе. И, конечно, нарядим ёлку!",
+                    icon: "🎄",
+                    color: "#F1C40F"
+                }
+            ]
+        };
+
+        // ===== ИНИЦИАЛИЗАЦИЯ =====
+        document.addEventListener('DOMContentLoaded', () => {
+            // Проверяем пароль
+            checkPassword();
+            
+            // Инициализируем снег
+            initSnow();
+            
+            // Инициализируем подарки
+            initGifts();
+            
+            // Инициализируем таймер
+            initTimer();
+            
+            // Назначаем обработчики событий
+            document.getElementById('passwordBtn').addEventListener('click', checkPasswordEnter);
+            document.getElementById('passwordInput').addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') checkPasswordEnter();
+            });
+            
+            document.getElementById('modalClose').addEventListener('click', closeModal);
+            document.getElementById('modalOverlay').addEventListener('click', (e) => {
+                if (e.target === document.getElementById('modalOverlay')) {
+                    closeModal();
+                }
+            });
+            
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') closeModal();
+            });
+        });
+
+        // ===== ПАРОЛЬ =====
+        function checkPassword() {
+            const savedPassword = sessionStorage.getItem('newYearGiftAccess');
+            if (savedPassword === CONFIG.password) {
+                showMainContent();
+            }
+        }
+        
+        function checkPasswordEnter() {
+            const input = document.getElementById('passwordInput');
+            const password = input.value.trim();
+            
+            if (password === CONFIG.password) {
+                sessionStorage.setItem('newYearGiftAccess', password);
+                showMainContent();
+            } else {
+                input.value = '';
+                input.placeholder = 'Неверное слово, попробуйте ещё...';
+                input.style.borderColor = '#ff0000';
+                input.style.animation = 'shake 0.5s';
+                
+                setTimeout(() => {
+                    input.style.animation = '';
+                    input.style.borderColor = '';
+                    input.placeholder = 'Введите волшебное слово';
+                }, 500);
+            }
+        }
+        
+        function showMainContent() {
+            const passwordScreen = document.getElementById('passwordScreen');
+            const mainContent = document.getElementById('mainContent');
+            
+            passwordScreen.classList.add('fade-out');
+            
+            setTimeout(() => {
+                passwordScreen.style.display = 'none';
+                mainContent.classList.add('show');
+            }, 500);
+        }
+
+        // ===== СНЕГ =====
+        function initSnow() {
+            const container = document.getElementById('snowContainer');
+            const snowflakes = ['❄', '❅', '❆', '✻', '✼', '✽', '✦'];
+            
+            for (let i = 0; i < 50; i++) {
+                const snowflake = document.createElement('div');
+                snowflake.className = 'snowflake';
+                snowflake.textContent = snowflakes[Math.floor(Math.random() * snowflakes.length)];
+                snowflake.style.left = `${Math.random() * 100}%`;
+                snowflake.style.animationDuration = `${Math.random() * 10 + 10}s`;
+                snowflake.style.animationDelay = `${Math.random() * 5}s`;
+                snowflake.style.opacity = Math.random() * 0.5 + 0.3;
+                snowflake.style.fontSize = `${Math.random() * 20 + 15}px`;
+                container.appendChild(snowflake);
+            }
+        }
+
+        // ===== ПОДАРКИ =====
+        function initGifts() {
+            const grid = document.getElementById('chestsGrid');
+            const openedGifts = JSON.parse(localStorage.getItem(CONFIG.storageKey) || '[]');
+            
+            // Рассчитываем, сколько подарков должно быть доступно
+            const availableGifts = calculateAvailableGifts();
+            
+            CONFIG.wishes.forEach((wish, index) => {
+                const gift = document.createElement('div');
+                gift.className = `chest ${index < availableGifts ? '' : 'locked'}`;
+                gift.dataset.month = wish.month;
+                
+                const isOpened = openedGifts.includes(wish.month);
+                const isAvailable = index < availableGifts;
+                
+                const monthNames = [
+                    'Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь',
+                    'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'
+                ];
+                
+                gift.innerHTML = `
+                    <div class="chest-inner ${isOpened ? 'opened' : ''}">
+                        <div class="chest-front">
+                            <div class="chest-bow"></div>
+                            <div class="chest-number">${wish.month}</div>
+                            <div class="chest-month">${monthNames[wish.month - 1]}</div>
+                            <div class="chest-status">${isOpened ? 'Открыт' : (isAvailable ? 'Готов к открытию' : 'Скоро откроется')}</div>
+                        </div>
+                        <div class="chest-back">
+                            <div class="chest-back-icon">${wish.icon}</div>
+                            <div class="chest-back-title">${wish.title}</div>
+                            <div class="chest-back-month">${monthNames[wish.month - 1]}</div>
+                            <div class="chest-back-content">Нажми, чтобы открыть</div>
+                        </div>
+                    </div>
+                `;
+                
+                // Добавляем обработчик клика
+                if (isAvailable) {
+                    gift.addEventListener('click', () => openGift(wish, gift, isOpened));
+                }
+                
+                grid.appendChild(gift);
+            });
+        }
+        
+        function calculateAvailableGifts() {
+            const start = CONFIG.startDate;
+            const now = new Date();
+            
+            if (now < start) return 0;
+            
+            let months = (now.getFullYear() - start.getFullYear()) * 12;
+            months -= start.getMonth();
+            months += now.getMonth();
+            
+            // Учитываем, что подарок открывается в конце месяца
+            if (now.getDate() < 28) {
+                months--;
+            }
+            
+            return Math.min(Math.max(months, 0), 11);
+        }
+        
+        function openGift(wish, giftElement, alreadyOpened) {
+            // Если подарок уже открыт, просто показываем содержимое
+            if (alreadyOpened) {
+                showGiftModal(wish);
+                return;
+            }
+            
+            // Анимация открытия
+            giftElement.classList.add('opening');
+            
+            // Сохраняем в localStorage
+            const openedGifts = JSON.parse(localStorage.getItem(CONFIG.storageKey) || '[]');
+            if (!openedGifts.includes(wish.month)) {
+                openedGifts.push(wish.month);
+                localStorage.setItem(CONFIG.storageKey, JSON.stringify(openedGifts));
+            }
+            
+            // Конфетти
+            createConfetti(giftElement);
+            
+            // Показываем модальное окно
+            setTimeout(() => {
+                giftElement.classList.remove('opening');
+                giftElement.classList.add('open');
+                showGiftModal(wish);
+            }, 600);
+        }
+        
+        function showGiftModal(wish) {
+            const modal = document.getElementById('modalOverlay');
+            const monthNames = [
+                'Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь',
+                'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'
+            ];
+            
+            document.getElementById('modalTitle').textContent = wish.title;
+            document.getElementById('modalMonth').textContent = monthNames[wish.month - 1];
+            document.getElementById('modalContent').textContent = wish.content;
+            
+            modal.classList.add('show');
+        }
+        
+        function closeModal() {
+            const modal = document.getElementById('modalOverlay');
+            modal.classList.remove('show');
+        }
+
+        // ===== ТАЙМЕР =====
+        function initTimer() {
+            updateTimer();
+            setInterval(updateTimer, 1000);
+        }
+        
+        function updateTimer() {
+            const timerElement = document.getElementById('timerDisplay');
+            const availableGifts = calculateAvailableGifts();
+            
+            // Если все подарки открыты
+            if (availableGifts >= 12) {
+                timerElement.textContent = '🎉 Все подарки открыты! Счастливого Нового Года!';
+                return;
+            }
+            
+            // Дата следующего подарка
+            const nextGiftDate = new Date(CONFIG.startDate);
+            nextGiftDate.setMonth(nextGiftDate.getMonth() + availableGifts + 1);
+            
+            // Если подарок уже доступен
+            const now = new Date();
+            if (now >= nextGiftDate) {
+                timerElement.textContent = `✨ Доступно подарков: ${availableGifts + 1} из 12`;
+                return;
+            }
+            
+            // Рассчитываем время до следующего подарка
+            const diff = nextGiftDate - now;
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            timerElement.textContent = `${days}д ${hours}ч ${minutes}м ${seconds}с`;
+        }
+
+        // ===== КОНФЕТТИ =====
+        function createConfetti(sourceElement) {
+            const rect = sourceElement.getBoundingClientRect();
+            const confettiColors = ['#8B0000', '#FFD700', '#2E7D32', '#FF6B6B', '#3498DB'];
+            const confettiShapes = ['❄', '✨', '🎀', '🎉', '🌟', '💫'];
+            
+            for (let i = 0; i < 25; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.textContent = confettiShapes[Math.floor(Math.random() * confettiShapes.length)];
+                confetti.style.color = confettiColors[Math.floor(Math.random() * confettiColors.length)];
+                confetti.style.left = `${rect.left + rect.width / 2}px`;
+                confetti.style.top = `${rect.top + rect.height / 2}px`;
+                confetti.style.position = 'fixed';
+                confetti.style.pointerEvents = 'none';
+                confetti.style.zIndex = '9999';
+                confetti.style.fontSize = '20px';
+                confetti.style.userSelect = 'none';
+                
+                document.body.appendChild(confetti);
+                
+                // Анимация
+                const angle = Math.random() * Math.PI * 2;
+                const velocity = 2 + Math.random() * 3;
+                const rotation = Math.random() * 720 - 360;
+                
+                let x = 0;
+                let y = 0;
+                let opacity = 1;
+                
+                const animate = () => {
+                    x += Math.cos(angle) * velocity;
+                    y += Math.sin(angle) * velocity + 0.2;
+                    opacity -= 0.02;
+                    
+                    confetti.style.transform = `translate(${x}px, ${y}px) rotate(${rotation}deg)`;
+                    confetti.style.opacity = opacity;
+                    
+                    if (opacity > 0) {
+                        requestAnimationFrame(animate);
+                    } else {
+                        confetti.remove();
+                    }
+                };
+                
+                animate();
+            }
+        }
+    </script>
 </body>
 </html>
